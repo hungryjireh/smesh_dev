@@ -1,0 +1,1 @@
+web: gunicorn smesh.wsgi --log-file -

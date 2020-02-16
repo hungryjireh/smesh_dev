@@ -1,0 +1,44 @@
+<!-- templates/navigationguide.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home | SMESH{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <div class="navigationguide">
+        <h2 class="navigationguide-label">Welcome, {{ user.username }}!</h2>
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="/users/{{ user.username }}">
+                    <div class="nav-div">
+                        <p class="nav-labels">View My Public Profile</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="{% url 'links' %}?profile=1">
+                    <div class="nav-div">
+                        <p class="nav-labels">Edit Profile 1</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="{% url 'links' %}?profile=2">
+                    <div class="nav-div">
+                        <p class="nav-labels">Edit Profile 2</p>
+                    </div>
+                </a>
+            </div>
+        </div> 
+    </div>
+{% else %}
+    <div class="home-no-login">
+        <div class="after"></div>
+        <h1 class="welcome-header">SMESH!</h1>
+        <img class="welcome-image" src="{% static 'ikfwebapp/images/display.jpg' %}">
+        <p class="welcome-subtext">Creating endless opportunities through realizing the potential of human connections</p>
+        <button class="welcome-button" onclick="location.href='/login'">SIGN IN</button>
+    </div>
+{% endif %}
+{% endblock %}
